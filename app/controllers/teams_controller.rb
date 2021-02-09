@@ -31,7 +31,7 @@ class TeamsController < ApplicationController
 
   def update
     if @team.update(team_params)
-      redirect_to @team, notice: I18n.t('views.messages.update_team')
+      #redirect_to @team, notice: I18n.t('views.messages.update_team')
       if current_user.id == @team.owner_id
      if @team.update(team_params)
        redirect_to @team, notice: I18n.t('views.messages.update_team')
