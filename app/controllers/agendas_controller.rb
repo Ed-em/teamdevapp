@@ -20,7 +20,7 @@ class AgendasController < ApplicationController
       render :new
     end
   end
-  
+
   def destroy
    @agenda = Agenda.find(params[:id])
    agenda_to_be_destroyed = @agenda
@@ -40,6 +40,6 @@ class AgendasController < ApplicationController
   end
 
   def agenda_params
-    params.fetch(:agenda, {}).permit %i[title description]
+    params.fetch(:agenda, {}).permit %i[title description, article]
   end
 end
