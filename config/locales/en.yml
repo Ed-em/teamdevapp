@@ -215,6 +215,7 @@ en:
     pm: pm
   views:
     messages:
+      not_authorized: 'you are not authorized to perform this operation'
       create_agenda: 'Successfully created an agenda!'
       create_article: 'Successfully created an article!'
       update_article: 'Successfully updated the article!'
