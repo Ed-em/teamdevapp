@@ -61,6 +61,7 @@ end
     @new_owner = User.find(params[:id])
     @team.update_attributes(owner_id: @new_owner.id)
     redirect_to  @team, notice: I18n.t('views.messages.change_leader')
+    TeamOwnerMailer.mail_new_owner(@new_owner).deliver
   end
 
   private
