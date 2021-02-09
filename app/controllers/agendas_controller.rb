@@ -23,15 +23,18 @@ class AgendasController < ApplicationController
 
   def destroy
    @agenda = Agenda.find(params[:id])
-   agenda_to_be_destroyed = @agenda
-   if @agenda.destroy
+   destroy_agenda = @agenda
    if @agenda.present?
-     @agenda.destroy
-     TeamMailer.mail_after_destroy(agenda_to_be_destroyed).deliver
-     redirect_to dashboard_url
-     redirect_to dashboard_url, notice: "agenda destroyed"
+      @agenda.destroy
+      team_id = destroy_agenda.team_id
+      team_members = User.where(keep_team_id: team_id)
+      team_members.each do |member|
+        TeamMailer.team_mail(member).deliver
+      end
+      redirect_to dashboard_url,  notice: "The agenda is successfully destroyed and mails are sent to the users"
    end
- end
+  end
+
 
   private
 
